@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  ipku-server:
+    container_name: ${COMPOSE_PROJECT_NAME}-ipku-server
+    image: misterabdul/ipku:latest
+    build:
+      context: .
+      args:
+        - PORT=${PORT}
+    restart: always
+    stdin_open: true
+    tty: true
+    privileged: true
+    network_mode: "host"
+    environment:
+      - BEHIND_PROXY=${BEHIND_PROXY}
+    expose:
+      - ${PORT}
